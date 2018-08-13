@@ -1,0 +1,15 @@
+{% extends  'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div style="width: 200px;height: 50px"></div>
+    <span><b><h1>待评价订单</h1></b></span>
+    <ul>
+    {% for order in orders %}
+        <li>
+            <span>订单号：{{ order.o_number }}</span>
+            <span>下单时间：{{ order.o_data }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'user/base_user.html' %}
+{% load static %}
+
+{% block extJs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static "app/user/user_register.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div style="padding: 20px">
+        <form action="{% url 'app:register' %}" method="post" enctype="multipart/form-data" onsubmit="return checkInput()">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">用户名:</label>
+                <input  name="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
+                <span id="user_register_iofo"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码:</label>
+                <input name="password" type="password" class="form-control" id="pwd" placeholder="请设置您的密码">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">确认密码:</label>
+                <input type="password" class="form-control" id="confirm_pwd" placeholder="请设确认您的密码">
+                 <span id="message"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">邮箱:</label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="请绑定您的邮箱">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">请上传您的头像</label>
+                <input name="icon" type="file" id="exampleInputFile">
+            </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+        </form>
+        <a href="{% url 'app:loginUser' %}">
+            <button id="login" type="button" class="btn btn-success">登录</button>
+        </a>
+        <a href="{% url 'app:home' %}">
+            <button id="register" type="button" class="btn btn-warning">返回首页</button>
+        </a>
+    </div>
+
+{% endblock %}

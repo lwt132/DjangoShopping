@@ -1,0 +1,13 @@
+{% extends  'base.html' %}
+{% load static %}
+
+{% block extJs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'app/buygoodsinfo/payStatusPage.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <span ><h6>支付成功</h6></span>
+    <button type="button" id="returnMine" class="btn btn-primary btn-lg btn-block">返回我的</button>
+{% endblock %}

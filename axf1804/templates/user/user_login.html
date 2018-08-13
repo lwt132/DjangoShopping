@@ -1,0 +1,30 @@
+{% extends 'user/base_user.html' %}
+{% load static %}
+{% block extJs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'app/user/user_login.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div style="padding: 20px">
+        <form action="{% url 'app:loginUser' %} }" method="post" enctype="multipart/form-data" onsubmit="return checkInput()" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">用户名:</label>
+                <input name="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码:</label>
+                <input name="password" type="password" class="form-control" id="pwd" placeholder="请设置您的密码">
+            </div>
+            <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+        <a href="{% url 'app:register' %}">
+            <button id="register" type="button" class="btn btn-success">注册</button>
+        </a>
+        <a href="{% url 'app:home' %}">
+            <button id="register" type="button" class="btn btn-warning">返回首页</button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extCss %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/base.css'%}" />
+{% endblock %}
+
+{% block header %}
+<header></header>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <a  class="home" href="{% url 'app:home' %}">
+        <dl>
+            <dt><span ></span></dt>
+            <dd>主页</dd>
+        </dl>
+    </a>
+    <a  class="market" href="{% url 'app:market' %}">
+        <dl>
+            <dt><span ></span></dt>
+            <dd>商城</dd>
+        </dl>
+    </a>
+    <a class="cart" href="{% url 'app:cart' %}">
+        <dl>
+            <dt><span ></span></dt>
+            <dd>购物车</dd>
+        </dl>
+    </a>
+    <a class="mine" href="{% url 'app:mine' %}">
+        <dl>
+            <dt><span ></span></dt>
+            <dd>我的</dd>
+        </dl>
+    </a>
+</footer>
+{% endblock %}

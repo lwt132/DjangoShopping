@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/swiper.min.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/reset.css'%}" />
+{% block extCss %}
+
+{% endblock %}
+</head>
+<body>
+    {% block header %}
+
+    {% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block footer %}
+
+    {% endblock %}
+</body>
+    <script type="text/javascript" charset="utf-8" src="{% static 'main/js/jquery-3.1.1.min.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'main/js/swiper.min.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'main/js/base.js' %}"></script>
+{% block extJs %}
+
+{% endblock %}
+</html>

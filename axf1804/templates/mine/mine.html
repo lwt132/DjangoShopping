@@ -1,0 +1,151 @@
+{% extends  'base_main.html' %}
+{% load static %}
+
+{% block extCss %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'app/mine/mine.css' %}" type="text/css">
+{% endblock %}
+{% block content %}
+<div id="mine">
+     <div class="fixed">
+{#            {% if is_login %}#}
+                <img src="{{ imgPath }}" alt="#">
+                <p>{{ user.username }}</p>
+{#            {% else %}#}
+{#                <span style="color: red" class="glyphicon glyphicon-user"></span>#}
+{#                <p><a href="{% url 'app:loginUser' %}">未登录</a></p>#}
+{#            {% endif %}#}
+
+            <p><span class="glyphicon glyphicon-fire"></span><span>等级</span></p>
+
+{#            {% if is_login %}#}
+{#            {% else %}#}
+{#                <a id="regis" href="{% url 'app:register' 1 %}">注册</a>#}
+{#            {% endif %}#}
+
+            <p><span class="glyphicon glyphicon-heart"></span>商品收藏</p>
+     </div>
+
+        <section class="mine">
+            <p>
+                <span>我的订单</span>
+                <a href="#">查看全部订单</a>
+            </p>
+            <nav id="nav">
+                <ul>
+                    <a href="{% url 'app:dealOrderPage' 1 %}">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-usd"></span></dt>
+                                <dd>待付款
+                                    {% ifequal nopayNum 0 %}
+                                        {% else %}
+                                        <span style="background-color: red" class="badge">{{ nopayNum }}</span>
+                                    {% endifequal %}
+                                </dd>
+                            </dl>
+                        </li>
+                    </a>
+                    <a href="{% url 'app:dealOrderPage' 2 %}">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-envelope"></span></dt>
+                                <dd>待收货
+                                    {% ifequal waitReceiveNum 0 %}
+                                        {% else %}
+                                        <span style="background-color: red" class="badge">{{ waitReceiveNum }}</span>
+                                    {% endifequal %}
+                                </dd>
+                            </dl>
+                        </li>
+                    </a>
+
+                    <a href="{% url 'app:dealOrderPage' 3 %}">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-pencil"></span></dt>
+                                <dd>待评价
+                                    {% ifequal waitEvaluateNum 0 %}
+                                        {% else %}
+                                        <span style="background-color: red" class="badge">{{ waitEvaluateNum }}</span>
+                                    {% endifequal %}
+                                </dd>
+                            </dl>
+                        </li>
+                    </a>
+
+                    <a href="{% url 'app:dealOrderPage' 4 %}">
+                        <li>
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-transfer"></span></dt>
+                                <dd>退款/售后
+                                {% ifequal refundNum 0 %}
+                                        {% else %}
+                                        <span style="background-color: red" class="badge">{{ refundNum }}</span>
+                                    {% endifequal %}
+                                </dd>
+                            </dl>
+                        </li>
+                    </a>
+                </ul>
+
+            </nav>
+
+            <menu>
+                <ul>
+                    <li>
+                        <a href="">
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-bullhorn"></span></dt>
+                                <dd>积分商城</dd>
+                            </dl>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-credit-card"></span></dt>
+                                <dd>优惠券</dd>
+                            </dl>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-import"></span></dt>
+                                <dd>收货地址</dd>
+                            </dl>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            <dl>
+                                <dt><span class="glyphicon glyphicon-phone-alt"></span></dt>
+                                <dd>客服/反馈</dd>
+                            </dl>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <dl>
+                            <dt><span class="glyphicon glyphicon-asterisk"></span></dt>
+                            <dd>关于我们</dd>
+                        </dl>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </menu>
+            <p>
+                <a href="{% url "app:logoutUser" %}">退出账号</a>
+            </p>
+
+        </section>
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends  'base_main.html' %}
+{% load static %}
+
+{% block extCss %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'app/cart/cart.css' %}" type="text/css">
+{% endblock %}
+
+{% block extJs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'app/cart/cart.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="cart">
+        <h3><b>购物车</b></h3>
+        <section class="full">
+            <section>
+                <ul>
+                    <li>
+                        <div class="clear">
+                        <p class="infoJustify">收货人:</p>
+                        <p><span>余丽洁</span></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="clear">
+                        <p class="infoJustify">电话:</p>
+                        <p><span>13082831100</span><a href="" class="change">修改&gt;</a></p>
+
+                             </div>
+                    </li>
+                    <li>
+                        <div class="clear">
+                        <p class="infoJustify">收货地址:</p>
+                        <p><span>拉普拉斯变换.....</span></p>
+                         </div>
+                    </li>
+                </ul>
+                <section class="bill">
+                    <p>闪送超市</p>
+                    <p>今日下单,明日可达</p>
+                    <a>凑单专区</a>
+                </section>
+                <section class="delivery">
+                    <span>收货时间:</span>
+                    <span>一小时到达</span>
+                    <a href="">选择您的收货时间</a>
+                </section>
+                <section class="delivery">
+                    <span>收货备注:</span>
+                    <input type="text" placeholder="可输入100字以内的特殊要求">
+                </section>
+                <menu>
+                    <ul>
+                    {#商品#}
+                        {% for cartData in cartDatas %}
+                            <li cartDataid = {{ cartData.id }} class="menuList" >
+                                <div class="confirm">
+                                    <span isselect="{{ cartData.c_isselect }}"  class="is_chooice">
+                                        {% if cartData.c_isselect %}
+                                            <span>√</span>
+                                        {% else %}
+                                            <span></span>
+                                        {% endif %}
+                                    </span>
+                                </div>
+
+                                <a href="#">
+                                    <img src="{{ cartData.c_goods.productimg }}" alt="#">
+                                    <p>{{ cartData.c_goods.productname }}</p>
+                                    <p>价格：<span style="color: red;">{{ cartData.c_goods.price }}元</span></p>
+                                </a >
+                                <section>
+                                    <button class="subCartNum">-</button>
+                                    <span >{{ cartData.c_num }}</span>
+                                    <button class="addCartNum">+</button>
+                                </section>
+                            </li>
+                        {% endfor %}
+
+                        <li class="payTheBill">
+                            {% if haveGood %}
+                                <div class="confirm">
+                                    <span id="allSelect" allSelect = "{{ AllSelect }}">
+                                            {% if AllSelect %}
+                                                 <span>√</span>
+                                            {% else %}
+                                                 <span></span>
+                                            {% endif %}
+                                    </span>
+                                </div>
+                            {% endif %}
+                            <p>
+                                {% if haveGood  %}
+                                    <span>全选</span>
+                                    <span id="totalNum">共计：{{ totalNum }}</span>
+                                    <span id="totalPrice">总价：{{ totalPrice }}元</span>
+                                 {% else %}
+                                {% endif %}
+                            </p>
+                            {% if haveGood %}
+                                <a id="nogoodToCart" href="{% url 'app:payPage' %}" >选好了</a>
+                             {% else %}
+                                <a href="{% url 'app:market' %}" >去购物</a>
+                            {% endif %}
+
+                        </li>
+                    </ul>
+                </menu>
+            </section>
+        </section>
+    </div>
+{% endblock %}
